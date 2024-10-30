@@ -2,47 +2,111 @@ package codingTest;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lv2 {
 	
 	public static void main(String[] args) {
-		int[] arr = {6,10,2};
-		List<Integer> list = new ArrayList<>();
-		boolean[] visit = new boolean[arr.length];
-		makeArr(arr,"",visit,list);
-		
-		for(int a : list) {
-			System.out.print(a+",");
-		}
-		
+		int[] arr = {2,1,1,1,0,0,0,0,0,0};
+		solution_양궁(5,arr);
 	}
 	
-	  public static String solution(int[] numbers) {
-	        String answer = "";
-	        List<Integer> list = new ArrayList<>();
-	        boolean[] visit = new boolean[numbers.length];
-	        makeArr(numbers,"",visit,list);
-	        int max = -1;
+	
+	  public static int[] solution_양궁(int n,int[] info) {
+		  int[] answer = {};
+		  int arrows = n;
+		  int idx = 0;
+		  int appeach = 0;
+		  int ryan = 0;
+		  int[] arr = new int[10];
+		 
+		  return answer;
+		  }
+		  
+		  public static int calculate(int n,boolean[] info) {
+			  int score = 0;
+			  for(int i=0;i<10;i++) {
+				  if(info[i]) {
+					  score += 10-i;
+				  }
+				  }
+		  return score;
+	  }
+	
+	
+	
+	  public static int solution_소수찾기(String numbers) {
+	        int answer = 0;
+	        
+	        int[] arr = new int[numbers.length()];
+	        
+	        for(int i=0;i<arr.length;i++) {
+	        	arr[i] = Integer.parseInt(""+numbers.charAt(i));
+	        }
+	        
+	        Set<Integer> list = new HashSet<>();
+	        boolean[] visit = new boolean[arr.length];
+	        
+	        makeArr(arr, "", visit, list);
+	        
 	        for(int a : list) {
-	        	if(a>max) {
-	        		max = a;
+	        	if(isPrime(a)) {
+	        		answer ++;
 	        	}
 	        }
-	        answer = max+"";
+	        
+	        
 	        
 	        return answer;
 	    }
+//	  소수인지 아닌지 판별하는 메소드
+	  public static boolean isPrime(int num) {
+		  if (num < 2) return false;
+	        if (num == 2) return true;
+	        if (num % 2 == 0) return false;
+		
+	        for (int i = 3; i <= Math.sqrt(num); i += 2) {
+	            if (num % i == 0) return false;
+	        }
+			  
+		 
+		  
+		  return true;
+		  
+	  }
+	
+	  public static String solution_가장큰수(int[] numbers) {
+  
+	        String[] str = new String[numbers.length];
+	        
+	        for(int i=0;i<numbers.length;i++) {
+	        	str[i] = String.valueOf(numbers[i]);
+	        }
+	        
+	        Arrays.sort(str,(o1,o2) -> (o2+o1).compareTo(o1+o2));
+	        if(str[0].equals("0")) {
+	        	return "0";
+	        }
+	        
+	        return String.join("", str);
+	        
+	    }
 //	  재귀함수를 통한 백트레킹 알고리즘으로 조합을 생성하는 방식
-	  public static void makeArr(int[] num,String current,boolean[] visit,List<Integer> list) {
+	  public static void makeArr(int[] num,String current,boolean[] visit,Set<Integer> list) {
 		  if(!current.isEmpty()) {
-			  list.add(Integer.parseInt(current));
+			  if(!(current.equals("0")||current.equals("1"))) {
+				  
+				  list.add(Integer.parseInt(current));
+			  }
 		  }
 		  
 		  for (int i = 0; i < num.length; i++) {
