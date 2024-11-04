@@ -1,13 +1,43 @@
 package codingTest;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Greedy {
-	public static void main(String[] args) {
-	
-	
+	public static void main(String[] args) throws Exception {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    int N = Integer.parseInt(br.readLine());
+	    System.out.println(solution_sugar(N));
 	
 	}
+	
+	public static int solution_sugar(int n) {
+		int answer = 0;
+	
+				while(true) {
+					if(n%5==0) {
+						answer += n/5;
+						break;
+					}else {
+						n -= 3;
+						answer ++;
+					}
+					if(n<0) {
+						answer = -1;
+						break;
+					}
+				
+				}
+			
+		
+		
+		return answer;
+		
+	}
+	
+	
 	
 	public int solution_JoyStick(String name) {
         int answer = 0;

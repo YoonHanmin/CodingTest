@@ -16,9 +16,93 @@ import java.util.stream.Collectors;
 public class Lv2 {
 	
 	public static void main(String[] args) {
-		int[] arr = {2,1,1,1,0,0,0,0,0,0};
-		solution_¾ç±Ã(5,arr);
+		int[] arr = {0,1,3,5,6};
+		search_binary(arr, 1);
 	}
+	
+	
+	   public static int solution_H_index(int[] citations) {
+	        int answer = 0;
+	        Arrays.sort(citations);
+	        int n = citations.length;
+	        
+	        for(int i=0;i<n;i++) {
+	        	
+	        	if(	citations[i] >= n-i) {
+	        		answer = n-i;
+	        		break;
+	        	}
+
+	        }
+	        return answer;
+	    }
+	
+	   public static int search_binary(int[] arr,int num) {
+		   int index = 0;
+		   int left = 0;
+		   int right = arr.length-1;
+		   
+		   
+		   while(left<=right) {
+			   int mid = left + (right-left)/2;
+			   
+			   if(arr[mid]>num) {
+				   index = mid;
+				   right = mid-1;
+				   
+			   }else {
+				   left = mid+1;
+			   }
+		   }
+		   
+		   System.out.println(index);
+		   return index;
+	   }
+	
+	 public int solution(String[][] clothes) {
+	        int answer = 0;
+	        HashMap<String,Integer> map = new HashMap<>();
+	       
+	        for(int i=0;i<clothes.length;i++){
+	            if(map.containsKey(clothes[i][1])){
+	            	int count = map.get(clothes[i][1]);
+	                 map.put(clothes[i][1],count+1);
+	            }else{
+	                map.put(clothes[i][1],1);
+	            }           
+	        }
+	        
+	        if(map.size()==1){
+	        	for(String key : map.keySet()) {
+	        		answer = map.get(key);
+	        	}
+	        }else {
+	        	for(String key : map.keySet()) {
+	        		answer *= (map.get(key)+1);
+	        	}
+	        	
+	        	answer -= 1;
+	        	
+	        }
+	        
+	        
+	        return answer;
+	    }
+	
+	
+	 public static boolean solution_phoneBook(String[] phone_book) {
+	        boolean answer = true;
+	       Arrays.sort(phone_book);
+	       
+	       for(int i=0;i<phone_book.length-1;i++) {
+	    	   if(phone_book[i+1].startsWith(phone_book[i])) {
+	    		   return false;
+	    	   }
+	       }
+
+	        return true;
+	    }
+	
 	
 	
 	  public static int[] solution_¾ç±Ã(int n,int[] info) {
